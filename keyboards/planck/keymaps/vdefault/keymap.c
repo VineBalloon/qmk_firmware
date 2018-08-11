@@ -45,9 +45,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {}
 
 
 // Hold for layer, tap TAPPING_TOGGLE times to toggle
-#define LOWER TT(_LOWER)
-#define RAISE TT(_RAISE)
-#define ADJUST MO(_ADJUST)
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
+//#define ADJUST MO(_ADJUST)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1,      KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,    KC_F7,    KC_F8,      KC_F9,      KC_F10,  KC_F11,  KC_F12,
     KC_TILD,    KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,  KC_CIRC,  KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_PIPE,
     S(KC_LBRC), KC_MUTE, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD,  KC_VOLU,  KC_HOME,    KC_END,     KC_UNDS, KC_PLUS, S(KC_RBRC),
-    _______,    KC_BSPC, KC_DEL,  KC_ENT,  _______,      _______,       ADJUST,     _______,    _______, _______, _______
+    _______,    KC_BSPC, KC_DEL,  KC_ENT,  _______,      _______,       _______,     _______,    _______, _______, _______
 ),
 
 /* Raise
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS,
     KC_LBRC, _______, _______, KC_BTN2, KC_BTN1, _______, _______, KC_PGDN, KC_PGUP, KC_MINS, KC_EQL,  KC_RBRC,
-    _______, _______, _______, _______, ADJUST,       _______,     _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R
+    _______, _______, _______, _______, _______,      _______,     _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R
 ),
 
 /* Plover layer (http://opensteno.org)
