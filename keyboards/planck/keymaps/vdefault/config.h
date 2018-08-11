@@ -40,4 +40,10 @@
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 4
 
+// Disable mod tap interrupt
+#define IGNORE_MOD_TAP_INTERRUPT
+
+// Define tapping toggle taps before a toggle
+#define TAPPING_TOGGLE 2
+
 #endif
