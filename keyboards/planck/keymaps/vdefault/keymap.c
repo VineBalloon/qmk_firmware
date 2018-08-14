@@ -48,7 +48,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {}
 // Hold for layer, tap TAPPING_TOGGLE times to toggle
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-//#define ADJUST MO(_ADJUST)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -74,17 +73,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 | F12  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  Del |   !  |   @  |   #  |   $  |   %  |  _   | Left | Down |  Up  |Right |  |   |
+ * |  Del |   !  |   @  |   #  |   $  |   %  | Left | Down |  Up  |Right |  _   |  |   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   {  |   ^  |   &  |   *  |   (  |   )  |  +   | Home | End  |      |      |  }   |
+ * |   {  |   ^  |   &  |   *  |   (  |   )  |      | Home | End  |      |  +   |  }   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |Toggle Mouse |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_mit(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
-    KC_DEL,     KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_HOME,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_PIPE, 
-    KC_LCBR,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_END,     _______,    _______,    KC_MINS,    KC_EQL,     KC_RCBR,
+    KC_DEL,     KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_UNDS,    KC_PIPE, 
+    KC_LCBR,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    _______,    KC_HOME,    KC_END,     _______,    KC_PLUS,     KC_RCBR,
     _______,    _______,    _______,    _______,    _______,        TO(_MOUSE),         _______,    _______,    _______,    _______,    _______
 ),
 
@@ -92,17 +91,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 | F12  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  Del |   1  |   2  |   3  |   4  |   5  |  _   | Prev | >/|| | Next | Vol- |  \   |
+ * |  Del |   1  |   2  |   3  |   4  |   5  |      | Prev | >/|| | Next |  -   |  \   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |   [  |   6  |   7  |   8  |   9  |   0  |  +   |PGDOWN| PGUP | Mute | Vol+ |  ]   |
+ * |   [  |   6  |   7  |   8  |   9  |   0  |      |PGDOWN| PGUP | Mute |  =   |  ]   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |Toggle Mouse |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_mit(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
-    KC_DEL,     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_UNDS,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_VOLU,    KC_BSLS,
-    KC_LBRC,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_PLUS,    KC_PGDN,    KC_PGUP,    KC_MUTE,    KC_VOLD,    KC_RBRC,
+    KC_DEL,     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       _______,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_MINS,    KC_BSLS,
+    KC_LBRC,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       _______,    KC_PGDN,    KC_PGUP,    KC_MUTE,    KC_EQL,     KC_RBRC,
     _______,    _______,    _______,    _______,    _______,        TO(_MOUSE),         _______,    _______,    _______,    _______,    _______
 ),
 
@@ -121,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,    _______,    KC_MS_U,    _______,    _______,    _______,    _______,    _______,    _______,   _______,     _______,
     _______,    _______,    KC_MS_L,    KC_MS_D,    KC_MS_R,    _______,    _______,    KC_BTN1,    KC_BTN2,    KC_BTN3,   KC_BTN4,     KC_BTN5,
     KC_ACL0,    KC_ACL1,    KC_ACL2,    _______,    _______,    _______,    _______,    _______,    _______,    _______,   _______,     _______,
-    _______,    _______,    _______,    _______,    _______,         TO(_MOUSE),        _______,    KC_WH_L,    KC_WH_D,   KC_WH_U,     KC_WH_R
+    _______,    _______,    _______,    _______,    _______,         TG(_MOUSE),        _______,    KC_WH_L,    KC_WH_D,   KC_WH_U,     KC_WH_R
 ),
 
 /* Plover layer (http://opensteno.org)
