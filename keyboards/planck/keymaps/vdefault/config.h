@@ -49,9 +49,9 @@
 // Mouse things
 #define MOUSEKEY_DELAY             200
 #define MOUSEKEY_INTERVAL          30
-#define MOUSEKEY_MAX_SPEED         8
-#define MOUSEKEY_TIME_TO_MAX       8
-#define MOUSEKEY_WHEEL_MAX_SPEED   8
+#define MOUSEKEY_MAX_SPEED         10
+#define MOUSEKEY_TIME_TO_MAX       15
+#define MOUSEKEY_WHEEL_MAX_SPEED   10
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 30
 
 #endif
