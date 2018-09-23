@@ -24,30 +24,38 @@ enum planck_layers {
   _BASE,
   _LOWER,
   _RAISE,
-  _PLOVER,
+  _LGREEK,
+  _UGREEK,
   _MOUSE,
   _ADJUST
 };
 
 enum planck_keycodes {
   BASE = SAFE_RANGE,
-  PLOVER,
-  BACKLIT,
-  EXT_PLV
 };
 
+enum unicodemap_index {
+    // Lowercase greek
+    L_ALPHA = 0,    L_BETA,     L_GAMMA,    L_DELTA,    L_EPSILON,  L_ZETA, 
+    L_ETA,          L_THETA,    L_IOTA,     L_KAPPA,    L_LAMBDA,   L_MU, 
+    L_NU,           L_XI,       L_OMICRON,  L_PI,       L_RHO,      L_SIGMA, 
+    L_TAU,          L_UPSILON,  L_PHI,      L_CHI,      L_PSI,      L_OMEGA,
 
-/*
-enum tapdancing {
+    // Uppercase greek
+    U_ALPHA,        U_BETA,     U_GAMMA,    U_DELTA,    U_EPSILON,  U_ZETA, 
+    U_ETA,          U_THETA,    U_IOTA,     U_KAPPA,    U_LAMBDA,   U_MU, 
+    U_NU,           U_XI,       U_OMICRON,  U_PI,       U_RHO,      U_SIGMA, 
+    U_TAU,          U_UPSILON,  U_PHI,      U_CHI,      U_PSI,      U_OMEGA,
+
+    // Emoji
+    THINK,
 };
 
-qk_tap_dance_action_t tap_dance_actions[] = {}
-*/
-
-
-// Hold for layer, tap TAPPING_TOGGLE times to toggle
+// Hold for layer
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define LGREK MO(_LGREEK)
+#define UGREK MO(_UGREEK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -82,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_mit(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
-    KC_DEL,     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_VOLU,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_MINS,    KC_EQL,
-    _______,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_VOLD,    KC_VOLD,    KC_VOLU,    KC_MUTE,    KC_LBRC,    KC_RBRC,
-    _______,    _______,    _______,    _______,    _______,        TO(_MOUSE),         _______,    _______,    _______,    _______,    _______
+    KC_DEL,     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       _______,    KC_MPRV,    KC_MPLY,    KC_MNXT,    KC_MINS,    KC_EQL,
+    _______,    KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       _______,    KC_VOLD,    KC_VOLU,    KC_MUTE,    KC_LBRC,    KC_RBRC,
+    _______,    _______,    _______,    _______,    _______,        TO(_LGREEK),         _______,    _______,    _______,    _______,    _______
 ),
 
 /* Raise
@@ -102,9 +110,45 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
     KC_INS,     KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_UNDS,    KC_PLUS, 
     _______,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     KC_LCBR,    KC_RCBR,
-    _______,    _______,    _______,    _______,    _______,        TO(_MOUSE),         _______,    _______,    _______,    _______,    KC_PSCR
+    _______,    _______,    _______,    _______,    _______,        TO(_LGREEK),         _______,    _______,    _______,    _______,    KC_PSCR
 ),
 
+/* Lower Greek
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |  μ   |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |  Δ   |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |UGREK |      |      |      |      |      |      |      |      |      |      |UGREK |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      | Base |             | Base |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_LGREEK] = LAYOUT_planck_mit(
+    _______,    _______,    X(L_OMEGA), X(L_EPSILON),   X(L_RHO),   X(L_TAU),   X(L_THETA), X(L_UPSILON),   X(L_IOTA),      X(L_OMICRON),   X(L_PI),     _______,
+    _______,    X(L_ALPHA), X(L_SIGMA), X(L_DELTA),     _______,    X(L_GAMMA), X(L_ETA),   _______,        X(L_KAPPA),     X(L_LAMBDA),    X(L_PHI),    _______,
+    UGREK,      X(L_ZETA),  X(L_XI),    X(L_CHI),       _______,    X(L_BETA),  X(L_NU),    X(L_MU),        _______,        _______,        X(L_PSI),    UGREK,
+    _______,    _______,    _______,    _______,        TO(_BASE),         _______,         TO(_BASE),      _______,        _______,        _______,     _______
+),
+
+/* Upper Greek
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |  μ   |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |  Δ   |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      | Base |             | Base |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+
+[_UGREEK] = LAYOUT_planck_mit(
+    _______,    _______,    X(U_OMEGA), X(U_EPSILON),   X(U_RHO),   X(U_TAU),   X(U_THETA), X(U_UPSILON),   X(U_IOTA),      X(U_OMICRON),   X(U_PI),     _______,
+    _______,    X(U_ALPHA), X(U_SIGMA), X(U_DELTA),     _______,    X(U_GAMMA), X(U_ETA),   _______,        X(U_KAPPA),     X(U_LAMBDA),    X(U_PHI),    _______,
+    _______,    X(U_ZETA),  X(U_XI),    X(U_CHI),       _______,    X(U_BETA),  X(U_NU),    X(U_MU),        _______,        _______,        X(U_PSI),  _______,
+    _______,    _______,    _______,    _______,        TO(_BASE),         _______,         TO(_BASE),      _______,        _______,        _______,     _______
+),
 /* Mouse
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |  MU  |      |      |      |      |      |      |      |      |
@@ -123,29 +167,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    _______,    _______,    _______,    TO(_BASE),         _______,        TO(_BASE),   KC_WH_L,    KC_WH_D,   KC_WH_U,     KC_WH_R
 ),
 
-/* Plover layer (http://opensteno.org)
- * ,-----------------------------------------------------------------------------------.
- * |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   S  |   T  |   P  |   H  |   *  |   *  |   F  |   P  |   L  |   T  |   D  |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   S  |   K  |   W  |   R  |   *  |   *  |   R  |   B  |   G  |   S  |   Z  |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Exit |      |      |   A  |   O  |             |   E  |   U  |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
-[_PLOVER] = LAYOUT_planck_grid(
-    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1   ,
-    XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-    XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    EXT_PLV, XXXXXXX, XXXXXXX, KC_C,    KC_V,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    XXXXXXX, XXXXXXX, XXXXXXX
-),
-
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |      |      |      |      |      |      |      |      |  Del |
+ * |      | Reset|      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|      |      |Plover|      |
+ * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -153,19 +179,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BASE,    _______,  _______, PLOVER,  _______,
+    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, _______,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, BASE,    _______,  _______, _______, _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 )
 
 
 };
-
-#ifdef AUDIO_ENABLE
-  float plover_song[][2]     = SONG(PLOVER_SOUND);
-  float plover_gb_song[][2]  = SONG(PLOVER_GOODBYE_SOUND);
-#endif
 
 uint32_t layer_state_set_user(uint32_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
@@ -176,51 +197,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case BASE:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_BASE);
-      }
-      return false;
-      break;
-    case BACKLIT:
-      if (record->event.pressed) {
-        register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-        #ifdef KEYBOARD_planck_rev5
-          PORTE &= ~(1<<6);
-        #endif
-      } else {
-        unregister_code(KC_RSFT);
-        #ifdef KEYBOARD_planck_rev5
-          PORTE |= (1<<6);
-        #endif
-      }
-      return false;
-      break;
-    case PLOVER:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          stop_all_notes();
-          PLAY_SONG(plover_song);
-        #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_on(_PLOVER);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
-      break;
-    case EXT_PLV:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(plover_gb_song);
-        #endif
-        layer_off(_PLOVER);
       }
       return false;
       break;
@@ -264,14 +240,8 @@ void dip_update(uint8_t index, bool active) {
   switch (index) {
     case 0:
       if (active) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(plover_song);
-        #endif
         layer_on(_ADJUST);
       } else {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(plover_gb_song);
-        #endif
         layer_off(_ADJUST);
       }
       break;
@@ -312,3 +282,29 @@ bool music_mask_user(uint16_t keycode) {
       return true;
   }
 }
+
+// Unicode things
+void matrix_init_user(void) {
+    set_unicode_input_mode(UC_WINC);
+}
+
+const uint32_t PROGMEM unicode_map[] = {
+    // Note: L_RHO = 0x03C1, L_SIGMA = 0x03C3
+    // Note: U_RHO = 0x03A1, U_SIGMA = 0x03A3
+    // This is not a mistake, there is a special form of sigma.
+
+    // Lowercase Greek
+    0x03B1, 0x03B2, 0x03B3, 0x03B4, 0x03B5, 0x03B6, 
+    0x03B7, 0x03B8, 0x03B9, 0x03BA, 0x03BB, 0x03BC, 
+    0x03BD, 0x03BE, 0x03BF, 0x03C0, 0x03C1, 0x03C3, 
+    0x03C4, 0x03C5, 0x03C6, 0x03C7, 0x03C8, 0x03C9,
+
+    // Uppercase Greek
+    0x0391, 0x0392, 0x0393, 0x0394, 0x0395, 0x0396,
+    0x0397, 0x0398, 0x0399, 0x039A, 0x039B, 0x039C,
+    0x039D, 0x039E, 0x039F, 0x03A0, 0x03A1, 0x03A3,
+    0x03A4, 0x03A5, 0x03A6, 0x03A7, 0x03A8, 0x03A9,
+
+    // Emoji
+    0x0001F914
+};

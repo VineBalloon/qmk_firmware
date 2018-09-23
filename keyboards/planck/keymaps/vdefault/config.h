@@ -43,6 +43,8 @@
 // Define tapping toggle taps before a toggle
 #define TAPPING_TOGGLE 2
 
+#ifdef MOUSEKEY_ENABLE 
+//
 // Mouse things
 #define MOUSEKEY_DELAY             200
 #define MOUSEKEY_INTERVAL          30
@@ -50,5 +52,7 @@
 #define MOUSEKEY_TIME_TO_MAX       15
 #define MOUSEKEY_WHEEL_MAX_SPEED   10
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 30
+
+#endif
 
 #endif
